@@ -18,6 +18,7 @@ ai = list(map(int, input().split()))
 
 
 for ts in range(1, T+1):
+    pass
 
 
 '''
