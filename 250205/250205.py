@@ -26,16 +26,21 @@
 5
 2 7 5 3 1 5
 '''
-N = int(input())
-V = int(input())
-arr = list(map(int, input().split()))
+# N = int(input())
+# V = int(input())
+# arr = list(map(int, input().split()))
+#
+# def find_index(N, V, arr):
+#     idx = -1
+#     for i in range(N):
+#         if V == arr[i]:
+#             idx = i
+#             break
+#     return idx
+#
+# print(find_index(N, V, arr))
 
-def find_index(N, V, arr):
-    idx = -1
-    for i in range(N):
-        if V == arr[i]:
-            idx = i
-            break
-    return idx
 
-print(find_index(N, V, arr))
+
+DATA = list(map(int, input()))
+print(DATA)

@@ -41,7 +41,14 @@ for tc in range(1, T+1):
         col_sum = sum(arr[r][c] for r in range(100))
         max_val = max(max_val, col_sum)
 
-    # 대각선1 합 구하기
+    # 대각선1(\) 합 구하기
+    diag1 = sum(arr[i][i] for i in range(100))
+    max_val = max(max_val, diag1)
+
+    # 대각선2(/) 합 구하기
+    diag2 = sum(arr[i][-i] for i in range(100))
+    max_val = max(max_val, diag2)
+
 
 
 
