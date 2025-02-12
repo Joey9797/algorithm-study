@@ -6,30 +6,33 @@ s_info = [list(map(int, input().split())) for _ in range(S)] # 학생 별 정보
 
 for info in s_info:
     if info[0] == 1:
-        for i in range(N):
+        for i in range(1, N, 3):
             if i % info[1] == 0 and i > 0:
                 if arr[i] == 0:
                     arr[i] = 1
                 else:
                     arr[i] = 0
-    if info[0] == 2:    # [2, 3]
-        if arr[info[1]] == 0:
-            arr[info[1]] = 1
+    elif info[0] == 2:    # [2, 3]
+        mid = info[1] # 중심 스위치
+        if arr[mid] == 0:
+            arr[mid] = 1
         else:
-            arr[info[1]] = 0
-        for i in range(1, N):
-            if arr[info[1] - i] != arr[info[1] + i]:
-                break
+            arr[mid] = 0
+        i = 1
+        while mid - i > 0 and mid + i < N:
+            if arr[mid - i] == arr[mid + i]:
+                if arr[mid - i] == 0:
+                    arr[mid - i] = 1
+                elif arr[mid - i] == 1:
+                    arr[mid - i] = 0
+                if arr[mid + i] == 1:
+                    arr[mid + i] = 0
+                elif arr[mid + i] == 0:
+                    arr[mid + i] = 1
+                i += 1
             else:
-                if arr[info[1] - i] == 0 and info[1] - i > 0 :
-                    arr[info[1] - i] = 1
-                elif arr[info[1] - i] == 1 and info[1] - i > 0 :
-                    arr[info[1] - i] = 0
-                if arr[info[1] + i] == 1 and info[1] - i > 0:
-                    arr[info[1] + i] = 0
-                elif arr[info[1] + i] == 0 and info[1] - i > 0:
-                    arr[info[1] + i] = 1
+                break
 
 ans = [arr[i:i+20] for i in range(1, N, 20)]
-result = ' '.join(list(map(str, ans[0])))
-print(result)
+for line in ans:
+    print(' '.join(list(map(str, line))))
