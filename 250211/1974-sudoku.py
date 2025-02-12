@@ -36,26 +36,41 @@ for tc in range(1, T+1):
             break
     else: count += 1
 
+    # for t in range(3):
+    #     lst = []
+    #     for i in range(3*t, 3 + 3*t): # start 값 (0,
+    #         for j in range(3):
+    #             lst.append(arr[i][j])
+    #     if len(set(lst)) < 9:
+    #         break
+    #
+    #     lst = []
+    #     for i in range(3*t, 3 + 3*t): # start 값 (0,
+    #         for j in range(3, 6):
+    #             lst.append(arr[i][j])
+    #     if len(set(lst)) < 9:
+    #         break
+    #
+    #     lst = []
+    #     for i in range(3 * t, 3 + 3 * t):  # start 값 (0,
+    #         for j in range(6, 9):
+    #             lst.append(arr[i][j])
+    #     if len(set(lst)) < 9:
+    #         break
     for t in range(3):
-        lst = []
+        lst1, lst2, lst3 = [], [], []
         for i in range(3*t, 3 + 3*t): # start 값 (0,
             for j in range(3):
-                lst.append(arr[i][j])
-        if len(set(lst)) < 9:
-            break
-
-        lst = []
-        for i in range(3*t, 3 + 3*t): # start 값 (0,
+                lst1.append(arr[i][j])
             for j in range(3, 6):
-                lst.append(arr[i][j])
-        if len(set(lst)) < 9:
-            break
-
-        lst = []
-        for i in range(3 * t, 3 + 3 * t):  # start 값 (0,
+                lst2.append(arr[i][j])
             for j in range(6, 9):
-                lst.append(arr[i][j])
-        if len(set(lst)) < 9:
+                lst3.append(arr[i][j])
+        if len(set(lst1)) < 9:
+            break
+        if len(set(lst2)) < 9:
+            break
+        if len(set(lst3)) < 9:
             break
     else: count += 1
 
