@@ -2,8 +2,6 @@
 ## STACK push
 def push(item, size):
     global top
-    # 이렇게 하면 함수 제일 위에 += 1 이 있기 때문에 top과 size가 같아져도 top에 +1을 하지 않을까? 할 수 있음
-    # 하지만, 바로 밑에 if 문이 있어서 top+1 이 10이 되는 순간 if 문이 실행되어서
     top += 1
     if top == size:
         print(0)

@@ -1,3 +1,9 @@
+import pprint
+
 N = int(input())
-arr = [[1] * c for c in range(1, N+1)]
-print(arr)
+arr = [[0] * N for _ in range(N)]
+for i in range(N):
+    for j in range(N):
+        if j == 0:
+            arr[i][j] = 1
+pprint.pprint(arr, width=20)
