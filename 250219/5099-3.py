@@ -1,15 +1,28 @@
-# 피자에 번호와 치즈양을 매긴다.
-# 그 피자들을 오븐 크기만큼 집어넣는다.
-# 맨 뒤의 피자가 앞으로 오면, //2를 해서 치즈 양을 줄이고, 결과가 0인지 본다.
-# 결과가 0이면, 남은 피자 중 첫번째 피자를 넣는다.
-# 결과가 0이 아니면, 아무것도 하지 않는다.
-# 이걸 반복하다가, 더 이상 남은 피자가 없으면, pop[0]을 해서 피자를 없앤다. 마지막 하나가 남을 때까지 반복한다.
-# 마지막 1개가 남으면, 그 1개의 index를 구한다.
-N, M = list(map(int, input().split()))
-che = list(map(int, input().split()))
-num = [i for i in range(1, M+1)]
-piz = list(zip(num, che))
-print(piz)
-#[7 2 6 5 3]
-ov = [0] * N    #[0, 0, 0]
-ov_idx = [0] * N    #[0, 0, 0]
+from collections import deque
+
+T = int(input())
+for tc in range(1, T+1):
+    N, M = list(map(int, input().split()))
+    che = list(map(int, input().split()))
+    num = [i for i in range(1, M+1)]
+    piz = {}
+    for c, n in list(zip(num, che)):
+        piz[c] = n
+
+    ov = deque()
+    ov.extend(i for i in range(1, N+1))
+    f = N
+
+    while len(ov) > 1:
+        if f < M and piz[ov[0]] // 2 == 0:
+            piz[ov[0]] //= 2
+            f += 1
+            ov[0] = f
+            ov.append(ov.popleft())
+        elif piz[ov[0]] // 2 > 0:
+            piz[ov[0]] //= 2
+            ov.append(ov.popleft())
+        elif f == M and piz[ov[0]] // 2 == 0:
+            ov.popleft()
+
+    print(f'#{tc} {ov[0]}')
