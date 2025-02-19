@@ -2,15 +2,36 @@
 ## STACK push
 def push(item, size):
     global top
-    top += 1
-    if top == size:
-        print(0)
+    if top == size-1:   # stack이 '꽉찬 상태'인지 확인 필수!
+        print('꽉 찼어요!')
     else:
+        top += 1
         stack[top] = item
 size = 10
 stack = [0] * size
 top = -1
 
+push(10, size)
+
+# 아래 코드가 강사님 코든데, 뭔가 헷갈림. 혹시 몰라서 일단 써둔다.
+def push(item, size):
+    global top
+    top += 1
+    if top == size:
+        print('꽉 찼어요!')
+    else:
+        stack[top] = item
+
+
+## ------------------------------------------------------------------------------------------
+## STACK pop
+def pop():
+    global top
+    if top == -1:
+        return 0
+    else:
+        top -= 1
+        return stack[top + 1]
 
 
 ## ------------------------------------------------------------------------------------------
