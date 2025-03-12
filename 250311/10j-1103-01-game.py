@@ -2,6 +2,9 @@ from collections import deque
 import sys
 sys.stdin = open("input.txt", "r")
 
+'''
+실패한 코드 ----------------------------------------------------------------
+'''
 N, M = [*map(int, input().split())]
 board = [[int(c) if c.isdigit() else c for c in input()] for _ in range(N)]
 stack = [(0, 0)]
