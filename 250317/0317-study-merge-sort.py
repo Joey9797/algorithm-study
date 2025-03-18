@@ -9,6 +9,7 @@ def merge(left, right):
     l = r = 0
 
     # 두 리스트에서 비교할 대상이 남아있을 때 까지 반복
+    # 둘 중 하나라도 남아있는게 없으면, 종료
     while l < len(left) and r < len(right):
         if left[l] < right[r]:
             result[l + r] = left[l]

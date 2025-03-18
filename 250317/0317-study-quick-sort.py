@@ -11,18 +11,17 @@ def hoare_partition1(left, right):
     i = left + 1        # 가장 왼쪽 인덱스 i
     j = right           # 가장 오른쪽 인덱스 j
 
-    while i <= j:
-        while i <= j and arr[i] <= pivot:   # 피벗보다 i값이 작을 때 # i(시작점)이 j(끝점) 보다 작거나 같을 때
+    while i <= j:   # i(시작점)이 j(끝점) 보다 작거나 같을 때
+        while i <= j and arr[i] <= pivot:   # 피벗보다 큰 값이 나올 때까지
             i += 1  # i 이동
 
-        # 피벗보다 j값이 작고, i(시작점)이 j(끝점) 보다 작거나 같을 때
-        while i <= j and arr[j] >= pivot: 
-            j -= 1
+        while i <= j and arr[j] >= pivot:   # 피벗보다 작은 값이 나올 때까지
+            j -= 1  # j 이동
 
         if i < j:
-            arr[i], arr[j] = arr[j], arr[i]
+            arr[i], arr[j] = arr[j], arr[i] # 서로 자리바꾸기
 
-    arr[left], arr[j] = arr[j], arr[left]
+    arr[left], arr[j] = arr[j], arr[left]   # i, j 크로스 이후, 피벗값과 j값 자리바꾸기
     return j
 
 
