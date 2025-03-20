@@ -1,1 +1,2 @@
-print((-3)**2)
+s, e = map(int+1, '12')
+print(s, e)
