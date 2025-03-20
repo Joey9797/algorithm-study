@@ -15,18 +15,19 @@ def calculate(i, num):
     
     for j in range(4):
         if op_cnt[j]: # and i+1 < N
+            op_cnt[j] -= 1
             if j == 0:
-                op_cnt[j] -= 1
                 calculate(i+1, num + nums[i+1])
             elif j == 1:
-                op_cnt[j] -= 1
                 calculate(i+1, num - nums[i+1]) 
             elif j == 2:
-                op_cnt[j] -= 1
                 calculate(i+1, num * nums[i+1])  
             elif j == 3:
-                op_cnt[j] -= 1
-                calculate(i+1, num // nums[i+1])
+                if num < 0:
+                    calculate(i+1, -(-num // nums[i+1]))
+                else:
+                    calculate(i+1, num // nums[i+1])
+            op_cnt[j] += 1
 
 
 
@@ -39,4 +40,4 @@ for tc in range(1, T+1):
     max_v = -100000000
     min_v = 100000000
     calculate(0, nums[0])
-    print(max_v, min_v)
+    print(f"#{tc} {max_v - min_v}")
