@@ -30,5 +30,6 @@ for tc in range(1, T+1):
     kings = set()
     for i in range(1, N+1):
         kings.add(find_set(i))
+    print(graph)
     print(f"#{tc} {len(kings)}")
     
