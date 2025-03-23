@@ -2,11 +2,10 @@ import sys
 # sys.stdin = open("input.txt", "r")
 from collections import deque
 input = sys.stdin.read().splitlines()
-# data = input.splitlines()
 
 N, M, R = map(int, input[0].split())
-graph = [[] for _ in range(M+1)]
-for i in range(1, N+1):
+graph = [[] for _ in range(N+1)]
+for i in range(1, M+1):
     s, e = map(int, input[i].split())
     graph[s].append(e)
     graph[e].append(s)
