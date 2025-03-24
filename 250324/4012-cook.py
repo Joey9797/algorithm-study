@@ -1,38 +1,51 @@
 import sys
 sys.stdin = open('input.txt', 'r')
 
-def pick(cnt, i):
-    if cnt == N//2:
+# 재료 두 그룹으로 나누기
+def pick(i, cnt): # 현재위치 i, 뽑은 개수 cnt
+    global result
+
+    if cnt == K:
         food1 = []
         food2 = []
-        for n in range(N):
-            if visited[n] == 1:
-                food1.append(n)
+        for i in range(N):
+            if bit[i] == 1:
+                food1.append(i)
             else:
-                food2.append(n)
-        # print(food1, food2)
-        food1_sum = 0
-        food2_sum = 0
-        for ci in range(cnt):
-            for cj in range(ci+1, cnt):
-                food1_sum += (foods[food1[ci]][food1[cj]] + foods[food1[cj]][food1[ci]])
-                food2_sum += (foods[food2[ci]][food2[cj]] + foods[food2[cj]][food2[ci]])
-        return abs(food1_sum - food2_sum)
-    
-    if i == N-1:
+                food2.append(i)
+
+        food1_sum, food2_sum = sum_score(food1, food2)
+        total = abs(food1_sum - food2_sum)
+        if total < result:
+            result = total
         return 
     
-    visited[i] = 1
-    pick(cnt+1, i+1)
-    visited[i] = 0
-    pick(cnt+1, i+1)
+    if i == N:
+        return
+    
+    bit[i] = 1
+    pick(i+1, cnt+1)
+    bit[i] = 0
+    pick(i+1, cnt)
+
+# 각 그룹의 맛(시너지) 합 구하기
+def sum_score(lst1, lst2):
+    lst1_sum = lst2_sum = 0
+    for i in range(K):
+        for j in range(K):
+            if j == i:
+                continue
+            lst1_sum += foods[lst1[i]][lst1[j]]
+            lst2_sum += foods[lst2[i]][lst2[j]]
+    return lst1_sum, lst2_sum    
 
 
 T = int(input())
 for tc in range(1, T+1):
     N = int(input())
+    K = N//2    # 한 그룹 당 뽑을 음식의 개수
     foods = [[*map(int, input().split())] for _ in range(N)]
-    visited = [0]*N
+    bit = [0]*N
     result = 160000
-    result = min(result, pick(0, 0))
-    print(result)
+    pick(0, 0)
+    print(f"#{tc} {result}")
