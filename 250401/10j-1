@@ -1,0 +1,51 @@
+M = int(input())
+N = M * 3  # 너비 (가로 길이)
+
+if M == 1:
+    print('*')
+else:
+    # 0번째 줄 (맨 윗줄)
+    print('*' * N)
+
+    # 1번째 줄
+    print('*' + ' ' * (N - 1))
+
+    # 2번째 줄
+    temp = ['*'] * N
+    temp[1] = ' '
+    print(''.join(temp))
+
+    mid_r = (N + 2) // 2
+    mid_c = N // 2
+
+    for r in range(3, N + 2):
+        line = [' '] * N
+        if r <= mid_r + 1:
+            if r % 2 == 0:
+                line[0] = '*'
+                line[-1] = '*'
+                line[r - 1] = ' '
+                line[N - (r - 2)] = ' '
+            else:
+                line[0] = '*'
+                line[-1] = '*'
+                line[r + 1] = '*'
+                line[N - r] = '*'
+        else:
+            if r % 2 == 0:
+                line[0] = '*'
+                line[-1] = '*'
+                l = mid_c - (r - mid_r - 2)
+                r_ = mid_c + (r - mid_r - 2)
+                if 0 <= l < N and 0 <= r_ < N:
+                    line[l] = '*'
+                    line[r_] = '*'
+            else:
+                line[0] = '*'
+                line[-1] = '*'
+                l = mid_c - (mid_r + 2 - r)
+                r_ = mid_c + (mid_r + 2 - r)
+                if 0 <= l < N and 0 <= r_ < N:
+                    line[l] = ' '
+                    line[r_] = ' '
+        print(''.join(line))
